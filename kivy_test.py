@@ -6,7 +6,7 @@ from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 
-from screens.test_screen import TestScreen
+from screens.main_function_screen import MainFunctionScreen
 
 from kivy.uix.screenmanager import ScreenManager, Screen
 
@@ -21,15 +21,28 @@ class TestApp(App):
         # layout.add_widget(Label(text='Hello 2'))
         # layout.add_widget(Label(text='World 2'))
 
-        sm = ScreenManager()
+        test = Screen()
 
-        screens = {}
+        self.sm = ScreenManager()
 
-        screens['test'] = TestScreen(name='test')
+        self.screens = {}
 
-        sm.switch_to(screens['test'])
+        self.screens['test'] = MainFunctionScreen(haltfunction=self.switch_screen)
+        self.screens['test2'] = test
+        self.screens['testfunc'] = self.test_func
 
-        return sm
+        self.screens['testfunc']()
+
+        self.sm.switch_to(self.screens['test'])
+
+
+        return self.sm
+
+    def switch_screen(self):
+        self.sm.switch_to(self.screens['test2'])
+
+    def test_func(self):
+        print('test')
 
 if __name__ == '__main__':
     TestApp().run()
