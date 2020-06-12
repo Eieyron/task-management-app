@@ -14,32 +14,37 @@ class TestApp(App):
 
     def build(self):
 
-        # layout = GridLayout(cols=2)
-
-        # layout.add_widget(Label(text='Hello 1'))
-        # layout.add_widget(Label(text='World 1'))
-        # layout.add_widget(Label(text='Hello 2'))
-        # layout.add_widget(Label(text='World 2'))
-
         test = Screen()
 
         self.sm = ScreenManager()
 
         self.screens = {}
 
-        self.screens['test'] = MainFunctionScreen(haltfunction=self.switch_screen)
+        self.screens['test'] = MainFunctionScreen(misc_func=self.switch_screen)
         self.screens['test2'] = test
-        self.screens['testfunc'] = self.test_func
-
-        self.screens['testfunc']()
+        # self.screens['testfunc'] = self.test_func
 
         self.sm.switch_to(self.screens['test'])
 
+        init_obj = {
+            'name'          :   aaron,
+            'ticket_number' :   123,
+        }
+
+        self.go_to_main_functions(
+            main_func = MainFunctionScreen(init_obj=init_obj)
+        )
 
         return self.sm
 
     def switch_screen(self):
         self.sm.switch_to(self.screens['test2'])
+
+    def go_to_main_functions(self, main_func):
+        
+        self.screens['mainfunc'] = main_func
+
+        self.sm.switch_to(self.screens['mainfunc'])
 
     def test_func(self):
         print('test')
