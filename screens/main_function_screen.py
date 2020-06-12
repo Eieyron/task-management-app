@@ -87,7 +87,11 @@ class StatusGrid(GridLayout):
 # Declare both screens
 class MainFunctionScreen(Screen):
 
+<<<<<<< HEAD
     def __init__(self, misc_func=None, *args, **kwargs):
+=======
+    def __init__(self, haltfunction=None, *args, **kwargs):
+>>>>>>> aac9c88e6e18d8c5b04e11c1749ed119b3bf62c0
 
         # initialize self as screen
         super().__init__()

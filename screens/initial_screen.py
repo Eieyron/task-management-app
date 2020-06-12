@@ -5,29 +5,37 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
+from kivy.uix.screenmanager import ScreenManager, Screen
 
-from kivy.config import Config
-Config.set('graphics', 'width', '290')
-Config.set('graphics', 'height', '300')
 
-class InitScrn(App):
+class InitialScreen(Screen):
 
-    def build(self):
+    def __init__(self, changefunction=None, *args, **kwargs):
 
+        super().__init__()
+
+        startChangeButton = Button(text='Start Change', size_hint_y=None)
+        if changefunction:
+            startChangeButton.on_press = changefunction
+        
 #=======Start Level1 Panel 2=================================================
         lvl2 = GridLayout(rows=3, cols = 2)
 
+        developerName = TextInput(text='Type Name Here', multiline = False)
+        changeName = TextInput(text='Type Name Here', multiline = False)
+        ticketNumber = TextInput(text='Type Number Here', multiline = False)
+
         #For Name of Developer
         lvl2.add_widget(Label(text='Developer Name:', ))
-        lvl2.add_widget(TextInput(text='Type Name Here', multiline = False))
+        lvl2.add_widget(developerName)
 
         #For Change Name
         lvl2.add_widget(Label(text='Change Name: '))
-        lvl2.add_widget(TextInput(text='Type Name Here', multiline = False))
+        lvl2.add_widget(changeName)
 
         #For Ticket Number
         lvl2.add_widget(Label(text='Ticket Number: '))
-        lvl2.add_widget(TextInput(text='Type Number Here', multiline = False))
+        lvl2.add_widget(ticketNumber)
 #=======End Level1 Panel 2====================================================
 
 
@@ -36,11 +44,6 @@ class InitScrn(App):
 
         lvl1.add_widget(Label(text='Blaze Change Manger', size_hint_y=None))    #Panel 1
         lvl1.add_widget(lvl2)                                                   #Panel 2
-        lvl1.add_widget(Button(text='Start Change', size_hint_y=None))           #Panel 3
+        lvl1.add_widget(startChangeButton)                                      #Panel 3
 #=======End Main Panel========================================================
-
-        return lvl1
-
-if __name__ == '__main__':
-    InitScrn().run()
-    
+        self.add_widget(lvl1)
