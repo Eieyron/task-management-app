@@ -15,19 +15,18 @@ class InitialScreen(Screen):
         super().__init__()
 
         startChangeButton = Button(text='Start Change', size_hint_y=None)
-        if changefunction:
-            startChangeButton.on_press = changefunction
+        startChangeButton.on_press = changefunction
         
 #=======Start Level1 Panel 2=================================================
         lvl2 = GridLayout(rows=3, cols = 2)
 
-        developerName = TextInput(text='Type Name Here', multiline = False)
+        self.developerName = TextInput(text='Type Name Here', multiline = False)
         changeName = TextInput(text='Type Name Here', multiline = False)
         ticketNumber = TextInput(text='Type Number Here', multiline = False)
 
         #For Name of Developer
         lvl2.add_widget(Label(text='Developer Name:', ))
-        lvl2.add_widget(developerName)
+        lvl2.add_widget(self.developerName)
 
         #For Change Name
         lvl2.add_widget(Label(text='Change Name: '))

@@ -13,19 +13,20 @@ from screens.main_function_screen import MainFunctionScreen
 from screens.final_screen import FinalScreen
 
 from kivy.config import Config
-Config.set('graphics', 'width', '290')
-Config.set('graphics', 'height', '300')
+Config.set('graphics', 'width', '400')
+Config.set('graphics', 'height', '450')
 
-class MgmntApp(App):
+class MgmntApp(App,InitialScreen):
 
     def build(self):
+
     	self.sm = ScreenManager()
     	scrn = Screen()
 
     	self.screens = {}
 
     	self.screens['Initial Screen'] = InitialScreen(changefunction=self.switch_second_screen)
-    	self.screens['Main Function Screen'] = MainFunctionScreen(haltfunction=self.switch_final_screen)
+    	self.screens['Main Function Screen'] = MainFunctionScreen(halt_func=self.switch_final_screen)
     	self.screens['Final Screen'] = FinalScreen()
 
     	self.sm.switch_to(self.screens['Initial Screen'])
@@ -34,6 +35,7 @@ class MgmntApp(App):
 
     def switch_second_screen(self):
     	self.sm.switch_to(self.screens['Main Function Screen'])
+    	print(self.developerName.text)
 
     def switch_final_screen(self):
     	self.sm.switch_to(self.screens['Final Screen'])
