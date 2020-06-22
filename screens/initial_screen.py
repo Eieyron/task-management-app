@@ -9,7 +9,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 
 
 class InitialScreen(Screen):
-
+    
     def __init__(self, changefunction=None, *args, **kwargs):
 
         super().__init__()
@@ -20,13 +20,15 @@ class InitialScreen(Screen):
 #=======Start Level1 Panel 2=================================================
         lvl2 = GridLayout(rows=3, cols = 2)
 
-        self.developerName = TextInput(text='Type Name Here', multiline = False)
+        self.Name = TextInput(text='Type Name Here', multiline = False)
+
         changeName = TextInput(text='Type Name Here', multiline = False)
         ticketNumber = TextInput(text='Type Number Here', multiline = False)
 
         #For Name of Developer
         lvl2.add_widget(Label(text='Developer Name:', ))
-        lvl2.add_widget(self.developerName)
+        lvl2.add_widget(self.Name)
+        self.Name.bind(text=self.calc)
 
         #For Change Name
         lvl2.add_widget(Label(text='Change Name: '))
@@ -46,3 +48,7 @@ class InitialScreen(Screen):
         lvl1.add_widget(startChangeButton)                                      #Panel 3
 #=======End Main Panel========================================================
         self.add_widget(lvl1)
+
+
+    def calc(self, instance, text):
+        print(text)

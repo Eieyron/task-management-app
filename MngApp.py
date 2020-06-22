@@ -18,28 +18,27 @@ Config.set('graphics', 'height', '450')
 
 class MgmntApp(App,InitialScreen):
 
-    def build(self):
+	sm = ScreenManager()
+	scrn = Screen()
 
-    	self.sm = ScreenManager()
-    	scrn = Screen()
+	def build(self):
 
-    	self.screens = {}
+		self.screens = {}
 
-    	self.screens['Initial Screen'] = InitialScreen(changefunction=self.switch_second_screen)
-    	self.screens['Main Function Screen'] = MainFunctionScreen(halt_func=self.switch_final_screen)
-    	self.screens['Final Screen'] = FinalScreen()
+		self.screens['Initial Screen'] = InitialScreen(changefunction=self.switch_second_screen)
+		self.screens['Main Function Screen'] = MainFunctionScreen(halt_func=self.switch_final_screen)
+		self.screens['Final Screen'] = FinalScreen()
 
-    	self.sm.switch_to(self.screens['Initial Screen'])
 
-    	return self.sm
+		self.sm.switch_to(self.screens['Initial Screen'])
 
-    def switch_second_screen(self):
-    	self.sm.switch_to(self.screens['Main Function Screen'])
-    	print(self.developerName.text)
+		return self.sm
+	def switch_second_screen(self):
+		self.sm.switch_to(self.screens['Main Function Screen'])
+		print(self.sm.screens[0].Name.text)
 
-    def switch_final_screen(self):
-    	self.sm.switch_to(self.screens['Final Screen'])
-
+	def switch_final_screen(self):
+		self.sm.switch_to(self.screens['Final Screen'])
 
 
 if __name__ == '__main__':
