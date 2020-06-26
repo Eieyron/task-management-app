@@ -20,23 +20,24 @@ class InitialScreen(Screen):
 #=======Start Level1 Panel 2=================================================
         lvl2 = GridLayout(rows=3, cols = 2)
 
-        self.Name = TextInput(text='Type Name Here', multiline = False)
-
-        changeName = TextInput(text='Type Name Here', multiline = False)
-        ticketNumber = TextInput(text='Type Number Here', multiline = False)
+        self.developerName = TextInput(text='Type Name Here', multiline = False)
+        self.changeName = TextInput(text='Type Name Here', multiline = False)
+        self.ticketNumber = TextInput(text='Type Number Here', multiline = False)
 
         #For Name of Developer
         lvl2.add_widget(Label(text='Developer Name:', ))
-        lvl2.add_widget(self.Name)
-        self.Name.bind(text=self.calc)
+        lvl2.add_widget(self.developerName)
+        self.developerName.bind(text=self.calc)
 
         #For Change Name
         lvl2.add_widget(Label(text='Change Name: '))
-        lvl2.add_widget(changeName)
+        lvl2.add_widget(self.changeName)
+        self.changeName.bind(text=self.calc)
 
         #For Ticket Number
         lvl2.add_widget(Label(text='Ticket Number: '))
-        lvl2.add_widget(ticketNumber)
+        lvl2.add_widget(self.ticketNumber)
+        self.ticketNumber.bind(text=self.calc)
 #=======End Level1 Panel 2====================================================
 
 

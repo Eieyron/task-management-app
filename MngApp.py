@@ -11,12 +11,13 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from screens.initial_screen import InitialScreen
 from screens.main_function_screen import MainFunctionScreen
 from screens.final_screen import FinalScreen
+from screens.scheduler import Scheduler
 
 from kivy.config import Config
 Config.set('graphics', 'width', '400')
 Config.set('graphics', 'height', '450')
 
-class MgmntApp(App,InitialScreen):
+class MgmntApp(App, Scheduler):
 
 	sm = ScreenManager()
 	scrn = Screen()
@@ -35,7 +36,7 @@ class MgmntApp(App,InitialScreen):
 		return self.sm
 	def switch_second_screen(self):
 		self.sm.switch_to(self.screens['Main Function Screen'])
-		print(self.sm.screens[0].Name.text)
+		print(self.sm.screens[0].developerName.text)
 
 	def switch_final_screen(self):
 		self.sm.switch_to(self.screens['Final Screen'])
