@@ -44,11 +44,7 @@ class MgmntApp(App, Scheduler):
 
 	def switch_second_screen(self):
 		self.sm.switch_to(self.screens['Main Function Screen'])
-<<<<<<< HEAD
 		print(self.sm.screens[0].developerName.text)
-=======
-		# print(self.sm.screens[0].Name.text)
->>>>>>> d00003403f45b9dab0a9ac48f601e63ffa226c02
 
 	def switch_final_screen(self):
 		self.sm.switch_to(self.screens['Final Screen'])
