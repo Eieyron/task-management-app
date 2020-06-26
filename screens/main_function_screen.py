@@ -98,30 +98,32 @@ class MainFunctionScreen(Screen):
         # initialize components
         outergrid               = GridLayout(rows = 4)
 
-        development_widget      = StatusGrid(text='DEVELOPMENT', schedule=self.schedule)
+        development_widget      = StatusGrid(text='DEVELOPMENT', schedule=self.schedule, hasPause=True)
         
-        testing_widget          = StatusGrid(text='TESTING', schedule=self.schedule)
+        testing_widget          = StatusGrid(text='TESTING', schedule=self.schedule, hasPause=True)
         
         documentation_widget    = StatusGrid(text='DOCUMENTATION', schedule=self.schedule, hasPause=True)
 
+        finalize_widget         = GridLayout(cols=2)
+
         halt_button             = Button(text='HALT')
-        if misc_func:
-            halt_button.on_press = self.haltfunction
-            self.misc_func = misc_func
+        if halt_func:
+            halt_button.on_press    = halt_func
+
+        finalize_button         = Button(text='FINALIZE')
+        finalize_button.on_press = self.finalize
+
+        finalize_widget.add_widget(halt_button)
+        finalize_widget.add_widget(finalize_button)
 
         # add components to outergrid
         outergrid.add_widget(development_widget)
         outergrid.add_widget(testing_widget)
         outergrid.add_widget(documentation_widget)
-        outergrid.add_widget(halt_button)
+        outergrid.add_widget(finalize_widget)
 
         # add components to self
         self.add_widget(outergrid)
 
-    def haltfunction(self):
+    def finalize(self):
         print(self.schedule)
-        # self.misc_func()
-        
-
-    
-
