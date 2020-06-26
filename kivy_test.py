@@ -26,11 +26,13 @@ class TestApp(App):
 
         self.sm.switch_to(self.screens['test'])
 
+        # fetch user attributes
         init_obj = {
-            'name'          :   aaron,
+            'developer_name':   "aaron",
             'ticket_number' :   123,
         }
 
+        # sample function call to go to mainfunction screen
         self.go_to_main_functions(
             main_func = MainFunctionScreen(init_obj=init_obj)
         )
@@ -40,6 +42,7 @@ class TestApp(App):
     def switch_screen(self):
         self.sm.switch_to(self.screens['test2'])
 
+    # sample function to go to mainfunction screen
     def go_to_main_functions(self, main_func):
         
         self.screens['mainfunc'] = main_func
