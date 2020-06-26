@@ -25,17 +25,25 @@ class MgmntApp(App,InitialScreen):
 
 		self.screens = {}
 
-		self.screens['Initial Screen'] = InitialScreen(changefunction=self.switch_second_screen)
-		self.screens['Main Function Screen'] = MainFunctionScreen(halt_func=self.switch_final_screen)
+		self.screens['Initial Screen'] = InitialScreen(
+			changefunction		=	self.switch_second_screen, 
+		)
+
+		self.screens['Main Function Screen'] = MainFunctionScreen(
+			halt_func			=	self.switch_final_screen,
+			init_screen 		=   self.screens['Initial Screen'] 
+		)
+
 		self.screens['Final Screen'] = FinalScreen()
 
 
 		self.sm.switch_to(self.screens['Initial Screen'])
 
 		return self.sm
+
 	def switch_second_screen(self):
 		self.sm.switch_to(self.screens['Main Function Screen'])
-		print(self.sm.screens[0].Name.text)
+		# print(self.sm.screens[0].Name.text)
 
 	def switch_final_screen(self):
 		self.sm.switch_to(self.screens['Final Screen'])
