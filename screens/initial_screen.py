@@ -14,12 +14,16 @@ class InitialScreen(Screen):
 
         super().__init__()
 
+        # self.mainFunctionScreen = mainFunctionScreen
+
         startChangeButton = Button(text='Start Change', size_hint_y=None)
         startChangeButton.on_press = changefunction
+
         
 #=======Start Level1 Panel 2=================================================
         lvl2 = GridLayout(rows=3, cols = 2)
 
+<<<<<<< HEAD
         self.developerName = TextInput(text='Type Name Here', multiline = False)
         self.changeName = TextInput(text='Type Name Here', multiline = False)
         self.ticketNumber = TextInput(text='Type Number Here', multiline = False)
@@ -28,6 +32,19 @@ class InitialScreen(Screen):
         lvl2.add_widget(Label(text='Developer Name:', ))
         lvl2.add_widget(self.developerName)
         self.developerName.bind(text=self.calc)
+=======
+        self.Name = TextInput(text='Type Name Here', multiline = False)
+        # self.Name.bind(text=self.pass_developer_name)
+
+        changeName = TextInput(text='Type Name Here', multiline = False)
+        
+        self.ticketNumber = TextInput(text='Type Number Here', multiline = False)
+        # self.ticketNumber.bind(text=self.pass_ticket_number)
+
+        #For Name of Developer
+        lvl2.add_widget(Label(text='Developer Name:', ))
+        lvl2.add_widget(self.Name)
+>>>>>>> d00003403f45b9dab0a9ac48f601e63ffa226c02
 
         #For Change Name
         lvl2.add_widget(Label(text='Change Name: '))
@@ -37,7 +54,10 @@ class InitialScreen(Screen):
         #For Ticket Number
         lvl2.add_widget(Label(text='Ticket Number: '))
         lvl2.add_widget(self.ticketNumber)
+<<<<<<< HEAD
         self.ticketNumber.bind(text=self.calc)
+=======
+>>>>>>> d00003403f45b9dab0a9ac48f601e63ffa226c02
 #=======End Level1 Panel 2====================================================
 
 
@@ -51,5 +71,16 @@ class InitialScreen(Screen):
         self.add_widget(lvl1)
 
 
-    def calc(self, instance, text):
-        print(text)
+    # def pass_developer_name(self, instance, text):
+
+    #     try:
+    #         self.mainFunctionScreen.set_user_credentials(text)
+    #     except:
+    #         pass
+
+    # def pass_ticket_number(self, instance, text):
+
+    #     try:
+    #         self.mainFunctionScreen.set_ticket_number(text)
+    #     except:
+    #         pass

@@ -26,17 +26,29 @@ class MgmntApp(App, Scheduler):
 
 		self.screens = {}
 
-		self.screens['Initial Screen'] = InitialScreen(changefunction=self.switch_second_screen)
-		self.screens['Main Function Screen'] = MainFunctionScreen(halt_func=self.switch_final_screen)
+		self.screens['Initial Screen'] = InitialScreen(
+			changefunction		=	self.switch_second_screen, 
+		)
+
+		self.screens['Main Function Screen'] = MainFunctionScreen(
+			halt_func			=	self.switch_final_screen,
+			init_screen 		=   self.screens['Initial Screen'] 
+		)
+
 		self.screens['Final Screen'] = FinalScreen()
 
 
 		self.sm.switch_to(self.screens['Initial Screen'])
 
 		return self.sm
+
 	def switch_second_screen(self):
 		self.sm.switch_to(self.screens['Main Function Screen'])
+<<<<<<< HEAD
 		print(self.sm.screens[0].developerName.text)
+=======
+		# print(self.sm.screens[0].Name.text)
+>>>>>>> d00003403f45b9dab0a9ac48f601e63ffa226c02
 
 	def switch_final_screen(self):
 		self.sm.switch_to(self.screens['Final Screen'])

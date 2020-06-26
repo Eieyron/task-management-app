@@ -87,18 +87,26 @@ class StatusGrid(GridLayout):
 # Declare both screens
 class MainFunctionScreen(Screen):
 
-
-    def __init__(self, halt_func=None, *args, **kwargs):
-
+    def __init__(self, halt_func=None, init_screen=None, *args, **kwargs):
 
         # initialize self as screen
         super().__init__()
         
         # initialize schedule related objects
+        self.user_credentials = {
+            "username" : "default",
+            "ticketno" : "default",
+        }
         self.schedule = {}
+        self.init_screen = init_screen
+
 
         # initialize components
-        outergrid               = GridLayout(rows = 4)
+        outergrid               = GridLayout(rows = 5)
+
+        namegrid                = GridLayout(cols = 2)
+        self.usernamelabel      = Label(text=self.user_credentials['username'])
+        self.ticketnolabel      = Label(text=self.user_credentials['ticketno'])
 
         development_widget      = StatusGrid(text='DEVELOPMENT', schedule=self.schedule, hasPause=True)
         
@@ -118,7 +126,12 @@ class MainFunctionScreen(Screen):
         finalize_widget.add_widget(halt_button)
         finalize_widget.add_widget(finalize_button)
 
+        # add components to namegrid
+        namegrid.add_widget(self.usernamelabel)
+        namegrid.add_widget(self.ticketnolabel)
+
         # add components to outergrid
+        outergrid.add_widget(namegrid)
         outergrid.add_widget(development_widget)
         outergrid.add_widget(testing_widget)
         outergrid.add_widget(documentation_widget)
@@ -127,5 +140,24 @@ class MainFunctionScreen(Screen):
         # add components to self
         self.add_widget(outergrid)
 
+    def set_user_credentials(self, username):
+        self.user_credentials["username"] = username
+        self.usernamelabel.text = username
+
+    def set_ticket_number(self, ticketno):
+        self.user_credentials["ticketno"] = ticketno
+        self.ticketnolabel.text = ticketno
+    
+    def load_serialized_file(self):
+
+        #load ticket and serialized values
+
+        pass
+
+    def on_pre_enter(self, *args):
+        self.set_user_credentials(self.init_screen.Name.text)
+        self.set_ticket_number(self.init_screen.ticketNumber.text)
+    
     def finalize(self):
         print(self.schedule)
+    
