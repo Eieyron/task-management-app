@@ -30,17 +30,17 @@ class InitialScreen(Screen):
         #For Name of Developer
         lvl2.add_widget(Label(text='Developer Name:', ))
         lvl2.add_widget(self.developerName)
-        self.developerName.bind(text=self.calc)
+        # self.developerName.bind(text=self.calc)
 
         #For Change Name
         lvl2.add_widget(Label(text='Change Name: '))
         lvl2.add_widget(self.changeName)
-        self.changeName.bind(text=self.calc)
+        # self.changeName.bind(text=self.calc)
 
         #For Ticket Number
         lvl2.add_widget(Label(text='Ticket Number: '))
         lvl2.add_widget(self.ticketNumber)
-        self.ticketNumber.bind(text=self.calc)
+        # self.ticketNumber.bind(text=self.calc)
 #=======End Level1 Panel 2====================================================
 
 

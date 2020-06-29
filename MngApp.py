@@ -32,6 +32,7 @@ class MgmntApp(App, Scheduler):
 
 		self.screens['Main Function Screen'] = MainFunctionScreen(
 			halt_func			=	self.switch_final_screen,
+			finalize_func		=	self.switch_final_screen,
 			init_screen 		=   self.screens['Initial Screen'] 
 		)
 
