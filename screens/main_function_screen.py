@@ -4,6 +4,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.graphics import Color
 from datetime import datetime
+import pickle
 
 class ColorLabel(Label):
     
@@ -147,17 +148,35 @@ class MainFunctionScreen(Screen):
     def set_ticket_number(self, ticketno):
         self.user_credentials["ticketno"] = ticketno
         self.ticketnolabel.text = ticketno
-    
-    def load_serialized_file(self):
-
-        #load ticket and serialized values
-
-        pass
 
     def on_pre_enter(self, *args):
         self.set_user_credentials(self.init_screen.Name.text)
         self.set_ticket_number(self.init_screen.ticketNumber.text)
+        # self.load()
     
     def finalize(self):
+        
         print(self.schedule)
+
+        file = open("users/"+self.user_credentials["username"]+"_"+self.user_credentials["ticketno"]+".pickle", "wb")
+
+        pickle.dump(self.schedule, file)
+
+        file.close()
+
+    def load(self):
+
+        # try:
+        file = open("users/"+self.user_credentials["username"]+"_"+self.user_credentials["ticketno"]+".pickle", "r", encoding="utf8")
+
+        self.schedule = pickle.load(file)
+
+        file.close()
+
+        print("successfully loaded previous schedule")
+        # except:
+        #     print("error resuming schedule")
+
+
+
     
