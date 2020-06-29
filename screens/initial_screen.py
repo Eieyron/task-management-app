@@ -23,25 +23,24 @@ class InitialScreen(Screen):
 #=======Start Level1 Panel 2=================================================
         lvl2 = GridLayout(rows=3, cols = 2)
 
-        self.Name = TextInput(text='Type Name Here', multiline = False)
-        # self.Name.bind(text=self.pass_developer_name)
-
-        changeName = TextInput(text='Type Name Here', multiline = False)
-        
+        self.developerName = TextInput(text='Type Name Here', multiline = False)
+        self.changeName = TextInput(text='Type Name Here', multiline = False)
         self.ticketNumber = TextInput(text='Type Number Here', multiline = False)
-        # self.ticketNumber.bind(text=self.pass_ticket_number)
 
         #For Name of Developer
         lvl2.add_widget(Label(text='Developer Name:', ))
-        lvl2.add_widget(self.Name)
+        lvl2.add_widget(self.developerName)
+        self.developerName.bind(text=self.calc)
 
         #For Change Name
         lvl2.add_widget(Label(text='Change Name: '))
-        lvl2.add_widget(changeName)
+        lvl2.add_widget(self.changeName)
+        self.changeName.bind(text=self.calc)
 
         #For Ticket Number
         lvl2.add_widget(Label(text='Ticket Number: '))
         lvl2.add_widget(self.ticketNumber)
+        self.ticketNumber.bind(text=self.calc)
 #=======End Level1 Panel 2====================================================
 
 
@@ -54,6 +53,8 @@ class InitialScreen(Screen):
 #=======End Main Panel========================================================
         self.add_widget(lvl1)
 
+    def calc(self, instance, text):
+        print(text) 
 
     # def pass_developer_name(self, instance, text):
 

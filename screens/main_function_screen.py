@@ -150,7 +150,7 @@ class MainFunctionScreen(Screen):
         self.ticketnolabel.text = ticketno
 
     def on_pre_enter(self, *args):
-        self.set_user_credentials(self.init_screen.Name.text)
+        self.set_user_credentials(self.init_screen.developerName.text)
         self.set_ticket_number(self.init_screen.ticketNumber.text)
         # self.load()
     
