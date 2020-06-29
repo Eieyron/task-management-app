@@ -208,7 +208,7 @@ class MainFunctionScreen(Screen):
         
         print(self.schedule)
 
-        file = open("users/"+self.user_credentials["username"]+"_"+self.user_credentials["ticketno"]+".pickle", "wb")
+        file = open("users/"+self.user_credentials["username"]+"_"+self.user_credentials["ticketno"]+".dump", "wb")
 
         pickle.dump(self.schedule, file)
 
@@ -219,7 +219,7 @@ class MainFunctionScreen(Screen):
     def load(self):
 
         try:
-            file = open("users/"+self.user_credentials["username"]+"_"+self.user_credentials["ticketno"]+".pickle", "rb")
+            file = open("users/"+self.user_credentials["username"]+"_"+self.user_credentials["ticketno"]+".dump", "rb")
 
             loaded_schedule = pickle.load(file)
             self.set_schedule(loaded_schedule)
