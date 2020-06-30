@@ -21,9 +21,9 @@ class StatusGrid(GridLayout):
         super().__init__(rows = 2)
 
         self.text = text
-        self.schedule = parent_screen.schedule
+        # self.schedule = parent_screen.schedule
         self.parent_screen = parent_screen
-        self.schedule[self.text] = {
+        self.parent_screen.schedule[self.text] = {
             'status' : 'default'
         }
 
@@ -64,41 +64,41 @@ class StatusGrid(GridLayout):
             if self.parent_screen.testing_widget.schedule['TESTING']['status'] != 'ONGOING':
                 return
 
-        if self.schedule[self.text]['status'] in ['default']:
+        if self.parent_screen.schedule[self.text]['status'] in ['default']:
             self.change_status(status='ONGOING')
-            self.schedule[self.text]['status'] = 'ONGOING'
-            self.schedule[self.text]['start'] = datetime.now()
-            self.schedule[self.text]['logs'] = []        
-            self.schedule[self.text]['end'] = None        
+            self.parent_screen.schedule[self.text]['status'] = 'ONGOING'
+            self.parent_screen.schedule[self.text]['start'] = datetime.now()
+            self.parent_screen.schedule[self.text]['logs'] = []        
+            self.parent_screen.schedule[self.text]['end'] = None        
         
-        print(self.schedule)
+        print(self.parent_screen.schedule)
 
     def pause_click(self):
 
-        if self.schedule[self.text]['status'] in ['ONGOING']:
+        if self.parent_screen.schedule[self.text]['status'] in ['ONGOING']:
             self.change_status(status='PAUSED')
             self.pause.text = 'resume'
-            self.schedule[self.text]['status'] = 'PAUSED'
-            self.schedule[self.text]['logs'].append([datetime.now()])
+            self.parent_screen.schedule[self.text]['status'] = 'PAUSED'
+            self.parent_screen.schedule[self.text]['logs'].append([datetime.now()])
 
-        elif self.schedule[self.text]['status'] in ['PAUSED']:
+        elif self.parent_screen.schedule[self.text]['status'] in ['PAUSED']:
             self.pause.text = 'pause'
             self.change_status(status='ONGOING')
-            self.schedule[self.text]['status'] = 'ONGOING'
-            self.schedule[self.text]['logs'][self.pause_history_number].append(datetime.now())
+            self.parent_screen.schedule[self.text]['status'] = 'ONGOING'
+            self.parent_screen.schedule[self.text]['logs'][self.pause_history_number].append(datetime.now())
             self.pause_history_number += 1
 
         # pass
-        print(self.schedule)
+        print(self.parent_screen.schedule)
 
     def end_click(self):
 
-        if self.schedule[self.text]['status'] in ['ONGOING']:
+        if self.parent_screen.schedule[self.text]['status'] in ['ONGOING']:
 
             self.change_status(status='FINISHED')
-            self.schedule[self.text]['status'] = 'FINISHED'
-            self.schedule[self.text]['end'] = datetime.now()
-            print(self.schedule)
+            self.parent_screen.schedule[self.text]['status'] = 'FINISHED'
+            self.parent_screen.schedule[self.text]['end'] = datetime.now()
+            print(self.parent_screen.schedule)
 
     def change_status(self, status):
         self.statusLabel.text = status
@@ -189,7 +189,8 @@ class MainFunctionScreen(Screen):
 
     def set_schedule(self, loaded_schedule):
 
-        # print(loaded_schedule)
+        print(loaded_schedule)
+        # print(loaded_schedule['DEVELOPMENT']['status'])
         self.development_widget.change_status(loaded_schedule['DEVELOPMENT']['status'])
         self.testing_widget.change_status(loaded_schedule['TESTING']['status'])
         self.documentation_widget.change_status(loaded_schedule['DOCUMENTATION']['status'])
